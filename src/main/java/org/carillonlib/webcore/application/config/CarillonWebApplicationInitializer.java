@@ -14,6 +14,7 @@ public class CarillonWebApplicationInitializer implements WebApplicationInitiali
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		AnnotationConfigWebApplicationContext mvcContext = new AnnotationConfigWebApplicationContext();
 		mvcContext.register(CarillonMvcConfig.class);
+		mvcContext.scan("org.carillonlib");
 		mvcContext.refresh();
 
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(mvcContext));
