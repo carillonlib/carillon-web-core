@@ -5,4 +5,8 @@
 	<artifactId>carillon-web-core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>carillon-web-core</name>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 </project>
