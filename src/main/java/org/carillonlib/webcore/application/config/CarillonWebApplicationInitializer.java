@@ -18,23 +18,24 @@ import org.springframework.web.servlet.DispatcherServlet;
 public class CarillonWebApplicationInitializer implements WebApplicationInitializer {
 
 	private Logger log = LoggerFactory.getLogger(getClass());
+
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		log.info(getClass().getSimpleName() + " beginning initialization for context: " + servletContext.getContextPath());
 
-		AnnotationConfigWebApplicationContext mvcContext = new AnnotationConfigWebApplicationContext();
+		AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
 		log.debug("Setting active spring profile: " + getActiveProfile());
-		mvcContext.getEnvironment().setActiveProfiles(getActiveProfile());
-		mvcContext.register(CarillonMvcConfig.class);
-		mvcContext.scan("org.carillonlib");
-		mvcContext.refresh();
+		applicationContext.getEnvironment().setActiveProfiles(getActiveProfile());
+		applicationContext.register(CarillonMvcConfig.class);
+		applicationContext.scan("org.carillonlib");
+		applicationContext.refresh();
 
-		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(mvcContext));
+		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(applicationContext));
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/app/*");
 
 		// set up spring security
-		DelegatingFilterProxy delegatingFilterProxy = new DelegatingFilterProxy("springSecurityFilterChain", mvcContext);
+		DelegatingFilterProxy delegatingFilterProxy = new DelegatingFilterProxy("springSecurityFilterChain", applicationContext);
 		FilterRegistration fr = servletContext.addFilter("springSecurityFilterChain", delegatingFilterProxy);
 		fr.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD), true, "/*");
 	}
