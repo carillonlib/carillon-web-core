@@ -28,7 +28,6 @@ public class CarillonWebApplicationInitializer implements WebApplicationInitiali
 		applicationContext.getEnvironment().setActiveProfiles(getActiveProfile());
 		applicationContext.register(CarillonMvcConfig.class);
 		applicationContext.scan("org.carillonlib");
-		applicationContext.refresh();
 
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(applicationContext));
 		dispatcher.setLoadOnStartup(1);
