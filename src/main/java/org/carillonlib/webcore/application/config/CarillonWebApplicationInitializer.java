@@ -20,7 +20,6 @@ public class CarillonWebApplicationInitializer implements WebApplicationInitiali
 	private Logger log = LoggerFactory.getLogger(getClass());
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-		servletContext.setInitParameter("contextConfigLocation", "/WEB-INF/security-app-context.xml");
 		log.info(getClass().getSimpleName() + " beginning initialization for context: " + servletContext.getContextPath());
 
 		AnnotationConfigWebApplicationContext mvcContext = new AnnotationConfigWebApplicationContext();
