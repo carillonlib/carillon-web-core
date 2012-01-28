@@ -17,6 +17,8 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 public class CarillonWebApplicationInitializer implements WebApplicationInitializer {
 
+	public static final String CONFIG_PACKAGE_NAME = "carillonconf";
+
 	private Logger log = LoggerFactory.getLogger(getClass());
 
 	@Override
