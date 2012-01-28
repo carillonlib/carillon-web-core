@@ -1,9 +1,12 @@
 package carillonconf;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+@Configuration
 public class CarillonMvcConfig {
+
 	@Bean
 	public InternalResourceViewResolver configureInternalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -11,4 +14,5 @@ public class CarillonMvcConfig {
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
+
 }
