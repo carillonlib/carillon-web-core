@@ -26,8 +26,7 @@ public class CarillonWebApplicationInitializer implements WebApplicationInitiali
 		AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
 		log.debug("Setting active spring profile: " + getActiveProfile());
 		applicationContext.getEnvironment().setActiveProfiles(getActiveProfile());
-		applicationContext.register(CarillonMvcConfig.class);
-		applicationContext.scan("org.carillonlib");
+		applicationContext.scan("carillonconf");
 
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(applicationContext));
 		dispatcher.setLoadOnStartup(1);
