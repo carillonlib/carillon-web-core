@@ -32,7 +32,7 @@ public class CarillonWebApplicationInitializer implements WebApplicationInitiali
 
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(applicationContext));
 		dispatcher.setLoadOnStartup(1);
-		dispatcher.addMapping("/app/*");
+		dispatcher.addMapping("/");
 
 		applicationContext.refresh();
 		executeInitializationDelegates(servletContext, applicationContext);
