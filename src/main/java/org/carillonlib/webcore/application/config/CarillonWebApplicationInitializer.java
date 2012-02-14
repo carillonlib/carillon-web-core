@@ -23,8 +23,11 @@ public class CarillonWebApplicationInitializer implements WebApplicationInitiali
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		log.info(getClass().getSimpleName() + " beginning initialization for context: " + servletContext.getContextPath());
 
+		// create the web application context and register it as the root
+		// context
 		AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
 		applicationContext.setServletContext(servletContext);
+		servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, applicationContext);
 
 		log.debug("Setting active spring profile: " + getActiveProfile());
 		applicationContext.getEnvironment().setActiveProfiles(getActiveProfile());
